@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TravelAgency
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TravelAgencyWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TravelAgencyWindow : Window
     {
-        public MainWindow()
+        public TravelAgencyWindow()
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;

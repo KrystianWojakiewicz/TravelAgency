@@ -40,8 +40,14 @@ namespace TravelAgency
             }
             else
             {
-                MessageBox.Show("Login Successful");
-
+               var messageBoxResult = MessageBox.Show("Login Successful", "alert", MessageBoxButton.OK);
+                if(messageBoxResult == MessageBoxResult.OK)
+                {
+                    TravelAgencyWindow taWindow = new TravelAgencyWindow();
+                    App.Current.MainWindow = taWindow;
+                    this.Close();
+                    taWindow.Show();
+                }
             }
         }
 
