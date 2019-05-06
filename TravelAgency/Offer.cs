@@ -14,7 +14,7 @@ namespace TravelAgency
     
     public partial class Offer
     {
-        public int OfferID { get; set; }
+        public System.Guid OfferID { get; set; }
         public string Title { get; set; }
         public string Destination { get; set; }
         public Nullable<System.DateTime> Date { get; set; }

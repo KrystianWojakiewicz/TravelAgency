@@ -31,7 +31,7 @@ namespace TravelAgency
             {
                 User newUser = new User()
                 {
-                    UserID = 1212,
+                    UserID = Guid.NewGuid(),
                     Username = usernameTextBox.Text,
                     Password = passwordTextBox.Text,
                     Saldo = 0

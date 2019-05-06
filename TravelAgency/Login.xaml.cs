@@ -25,11 +25,46 @@ namespace TravelAgency
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
+        //check if there exists a user with given username/password
+        private void queryUser(TravelAgencyDBEntities db)
+        {
+            var user = db.User
+              .Where(u => u.Username == usernameTextBox.Text)
+              .Where(u => u.Password == passwordTextBox.Text)
+              .Select(u => u);
+
+            var result = user.FirstOrDefault();
+            if (result == null)
+            {
+                MessageBox.Show("Invalid Username or Password");
+            }
+            else
+            {
+                MessageBox.Show("Login Successful");
+
+            }
+        }
+
         private void GoToRegisterWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             Register registerWindow = new Register();
             this.Hide();
             registerWindow.Show();
+        }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TravelAgencyDBEntities db = new TravelAgencyDBEntities();
+            if (!String.IsNullOrEmpty(usernameTextBox.Text) && !String.IsNullOrEmpty(passwordTextBox.Text))
+            {
+                queryUser(db);
+            }
+            else
+            {
+                MessageBox.Show("Please enter your credentials");
+            }
+
+            
         }
     }
 }
