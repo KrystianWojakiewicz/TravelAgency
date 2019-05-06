@@ -21,7 +21,7 @@
             <Button Content="Logout" Canvas.Left="694.6" Canvas.Top="6.074" Width="75" Background="#FFB5B6CB"/>
             <Button Content="Shopping Cart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84.6" Background="#FFB5B6CB" Height="19.96" Canvas.Left="582.6" Canvas.Top="6.074"/>
         </Canvas>
-        <ListBox x:Name="offerListBox" HorizontalAlignment="Left" Height="317.321" Margin="10,10,0,0" VerticalAlignment="Top" Width="213.882" Grid.Row="2"/>
-        <TextBox HorizontalAlignment="Left" Height="21.858" TextWrapping="Wrap" Text="Offers" VerticalAlignment="Top" Width="85.6" Margin="10,21.2,0,0" Grid.Row="1" Background="#FFB5B6CB"/>
+        <ListBox x:Name="offerListBox" HorizontalAlignment="Left" Height="317.321" Margin="10,10,0,0" VerticalAlignment="Top" Width="319.829" Grid.Row="2"/>
+        <TextBox HorizontalAlignment="Left" Height="21.858" IsReadOnly="True" TextWrapping="Wrap" Text="Offers" VerticalAlignment="Top" Width="85.6" Margin="10,21.2,0,0" Grid.Row="1" Background="#FFB5B6CB"/>
     </Grid>
 </Window>

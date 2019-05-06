@@ -18,5 +18,6 @@ namespace TravelAgency
         public string Username { get; set; }
         public string Password { get; set; }
         public decimal Saldo { get; set; }
+        public Nullable<bool> isAdmin { get; set; }
     }
 }

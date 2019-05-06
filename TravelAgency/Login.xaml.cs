@@ -33,7 +33,7 @@ namespace TravelAgency
               .Where(u => u.Password == passwordTextBox.Text)
               .Select(u => u);
 
-            var result = user.FirstOrDefault();
+            User result = user.FirstOrDefault();
             if (result == null)
             {
                 MessageBox.Show("Invalid Username or Password");
@@ -47,8 +47,20 @@ namespace TravelAgency
                     App.Current.MainWindow = taWindow;
                     this.Close();
                     taWindow.Show();
+
+                    if (result.isAdmin == true)
+                    {
+                        AdminWindow adminWin = new AdminWindow();
+                        adminWin.Show();
+                    }
                 }
             }
+        }
+
+        private void clearInputBoxes()
+        {
+            usernameTextBox.Clear();
+            passwordTextBox.Clear();
         }
 
         private void GoToRegisterWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -60,17 +72,18 @@ namespace TravelAgency
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            TravelAgencyDBEntities db = new TravelAgencyDBEntities();
-            if (!String.IsNullOrEmpty(usernameTextBox.Text) && !String.IsNullOrEmpty(passwordTextBox.Text))
+            using (TravelAgencyDBEntities db = new TravelAgencyDBEntities())
             {
-                queryUser(db);
-            }
-            else
-            {
-                MessageBox.Show("Please enter your credentials");
-            }
-
-            
+                if (!String.IsNullOrEmpty(usernameTextBox.Text) && !String.IsNullOrEmpty(passwordTextBox.Text))
+                {
+                    queryUser(db);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter your credentials");
+                }
+            }              
+            clearInputBoxes();
         }
     }
 }

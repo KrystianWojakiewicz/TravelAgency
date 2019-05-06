@@ -34,7 +34,8 @@ namespace TravelAgency
                     UserID = Guid.NewGuid(),
                     Username = usernameTextBox.Text,
                     Password = passwordTextBox.Text,
-                    Saldo = 0
+                    Saldo = 0,
+                    isAdmin = true
                 };
                 db.User.Add(newUser);
                 db.SaveChanges();
@@ -55,8 +56,10 @@ namespace TravelAgency
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            TravelAgencyDBEntities db = new TravelAgencyDBEntities();
-            addNewUser(db);
+            using (TravelAgencyDBEntities db = new TravelAgencyDBEntities())
+            {
+                addNewUser(db);
+            }  
             clearInputBoxes();
 
             this.Close();
