@@ -6,26 +6,7 @@
         xmlns:local="clr-namespace:TravelAgency"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+   
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="301*"/>
-            <ColumnDefinition Width="217*"/>
-            <ColumnDefinition Width="276*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="169*"/>
-        </Grid.RowDefinitions>
-        <ListBox HorizontalAlignment="Left" Width="280.848" Margin="10,10,0,10" Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="36.952,272.522,0,0" VerticalAlignment="Top" Width="143.8" RenderTransformOrigin="-0.053,0.641" Grid.Column="1" Grid.Row="1" Height="39.16" Background="#FFB46262" FontSize="20" Click="submitButton_Click"/>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="49.6" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="194.752">
-            <TextBlock TextWrapping="Wrap" FontSize="14" FontWeight="Bold"><Run Text="Username"/><Run Text=":"/></TextBlock>
-            <TextBox x:Name="usernameTextBox" Height="23" TextWrapping="Wrap" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="52" Margin="10,64.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="194.752" RenderTransformOrigin="0.426,2.228">
-            <TextBlock TextWrapping="Wrap" FontSize="14" FontWeight="Bold" Text="Password:"/>
-            <TextBox x:Name="passwordTextBox" Height="23" TextWrapping="Wrap" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-        </StackPanel>
-
     </Grid>
 </Window>
