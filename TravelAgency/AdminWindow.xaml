@@ -25,13 +25,21 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBox HorizontalAlignment="Left" Height="32.6" Margin="10,10,0,0" IsReadOnly="True" TextWrapping="Wrap" Text="List of Users" VerticalAlignment="Top" Width="161.6" Background="#FFB5B6CB" RenderTransformOrigin="0.48,-0.957"/>
-        <Button x:Name="deleteUserBtn" Content="Delete User" HorizontalAlignment="Left" Margin="120.6,322.6,0,0" VerticalAlignment="Top" Width="120.6" Height="35.96" Grid.Column="1" Background="#FFCD4E4E" FontSize="14" Click="DeleteUserBtn_Click"/>
+        <Button x:Name="deleteUserBtn" Content="Delete User" HorizontalAlignment="Left" Margin="111.4,323.4,0,0" VerticalAlignment="Top" Width="125" Height="35.96" Grid.Column="1" Background="#FFCD4E4E" FontSize="14" Click="DeleteUserBtn_Click"/>
         <StackPanel Grid.RowSpan="1" Orientation="Horizontal" Margin="10,63.05,0,306.15">
             <TextBlock x:Name="IdLabel" Text="UserID" TextWrapping="Wrap" Width="80" Padding="10,0,0,0"/>
             <TextBlock x:Name="usernameLabel" Text="Username" TextWrapping="Wrap" Width="81.2" Padding="10,0,0,0"/>
             <TextBlock x:Name="passwordLabel" Text="Password" TextWrapping="Wrap" Width="84.4" Padding="10,0,0,0"/>
             <TextBlock x:Name="saldoLabel" Text="Saldo" TextWrapping="Wrap" Width="88.4" Padding="10,0,0,0"/>
             <TextBlock x:Name="isAdminLabel" Text="isAdmin" TextWrapping="Wrap" Width="103.6"/>
+        </StackPanel>
+        <StackPanel x:Name="addUserStackPanel" Grid.Column="1" HorizontalAlignment="Left" Height="192.4" Margin="111.4,83,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.392,-1.06">
+            <Label Content="Username:" Margin="0,0,-0.4,0"/>
+            <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="23" Margin="0,0,-20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Password:" Margin="0,0,-0.4,0"/>
+            <TextBox x:Name="passwordTextBox" Height="24" TextWrapping="Wrap" Margin="0,0,2.8,0"/>
+            <CheckBox x:Name="isAdminCheckBox" Content="isAdmin" Margin="10,15,-0.4,0" Height="20"/>
+            <Button x:Name="addUserBtn" Content="Add User" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Background="#FFCD4E4E" Height="22" Margin="10,30,0,0" Click="AddUserBtn_Click"/>
         </StackPanel>
 
     </Grid>

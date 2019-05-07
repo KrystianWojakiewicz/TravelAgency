@@ -35,7 +35,7 @@ namespace TravelAgency
                     Username = usernameTextBox.Text,
                     Password = passwordTextBox.Text,
                     Saldo = 0,
-                    isAdmin = true
+                    isAdmin = false
                 };
                 db.User.Add(newUser);
                 db.SaveChanges();
