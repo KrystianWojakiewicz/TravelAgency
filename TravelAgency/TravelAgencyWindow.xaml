@@ -16,31 +16,25 @@
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="341*"/>
-            <ColumnDefinition Width="337*"/>
-            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="171*"/>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="89*"/>
         </Grid.ColumnDefinitions>
-        <Canvas Height="36" Grid.ColumnSpan="3" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" VerticalAlignment="Top">
+        <Canvas Height="36" Grid.ColumnSpan="3" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" VerticalAlignment="Top" Margin="0,0,-0.4,0">
             <Button x:Name="logoutBtn" Content="Logout" Canvas.Left="694.6" Canvas.Top="6.074" Width="75" Background="#FFB5B6CB" Click="LogoutBtn_Click"/>
             <Button Content="Shopping Cart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84.6" Background="#FFB5B6CB" Height="19.96" Canvas.Left="582.6" Canvas.Top="6.074"/>
         </Canvas>
         <TextBox HorizontalAlignment="Left" Height="22" IsReadOnly="True" TextWrapping="Wrap" Text="Offers" VerticalAlignment="Top" Width="86" Margin="10,21.4,0,0" Grid.Row="1" Background="#FFB5B6CB"/>
-        <Image x:Name="offerImage" Grid.Column="1" HorizontalAlignment="Left" Height="181" Margin="9.6,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="317.227"/>
-        <Canvas Grid.Column="1" Margin="9.6,10,10,0" Grid.Row="3">
-            <TextBox Height="195.069" TextWrapping="Wrap" Canvas.Top="9.665" Width="297.228" Panel.ZIndex="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" Canvas.Left="10"/>
-        </Canvas>
-        <DataGrid x:Name="offersDataGrid" HorizontalAlignment="Left" Height="408" Margin="10,10,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Width="320.826" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True">
-            <DataGrid.ItemBindingGroup>
-                <BindingGroup/>
-            </DataGrid.ItemBindingGroup>
+        <Image x:Name="offerImage" Grid.Column="1" HorizontalAlignment="Right" Height="181" Margin="0,10.6,10,0" Grid.Row="2" VerticalAlignment="Top" Width="241"/>
+        <DataGrid x:Name="offersDataGrid" HorizontalAlignment="Left" Height="408" Margin="10,9.6,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Width="321" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" MaxColumnWidth="160" AutoGenerateColumns="False" BorderThickness="3" SelectionChanged="OffersDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn x:Name="Title" Header="Title" IsReadOnly="True" Width="100" CanUserReorder="False"/>
-                <DataGridComboBoxColumn x:Name="Destination" Header="Destination" IsReadOnly="True" Width="100" CanUserReorder="False"/>
-                <DataGridComboBoxColumn x:Name="Date" Header="Date" IsReadOnly="True" Width="117" CanUserReorder="False"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Destination" Binding="{Binding Destination}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Image" Binding="{Binding Image}"/>
+
             </DataGrid.Columns>
-            <DataGrid.DataContext>
-                <local:Offer/>
-            </DataGrid.DataContext>
         </DataGrid>
+        <TextBox x:Name="weatherInfoTextBox" TextWrapping="Wrap" Panel.ZIndex="1" BorderBrush="Black" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" BorderThickness="2" Margin="0,13.6,2.6,82.2" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Width="171"/>
     </Grid>
 </Window>

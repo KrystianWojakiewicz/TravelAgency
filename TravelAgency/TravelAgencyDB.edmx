@@ -14,6 +14,8 @@
           <Property Name="Destination" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="date" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Coordinates" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -56,6 +58,8 @@
           <Property Name="Destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Coordinates" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -77,6 +81,8 @@
           <EntitySetMapping Name="Offer">
             <EntityTypeMapping TypeName="TravelAgencyDBModel.Offer">
               <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
