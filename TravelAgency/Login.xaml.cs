@@ -40,20 +40,19 @@ namespace TravelAgency
             }
             else
             {
-               var messageBoxResult = MessageBox.Show("Login Successful", "alert", MessageBoxButton.OK);
-                if(messageBoxResult == MessageBoxResult.OK)
-                {
-                    TravelAgencyWindow taWindow = new TravelAgencyWindow();
-                    App.Current.MainWindow = taWindow;
-                    this.Close();
-                    taWindow.Show();
+                MessageBox.Show("Login Successful", "alert", MessageBoxButton.OK);
+                
+                TravelAgencyWindow taWindow = new TravelAgencyWindow();
+                App.Current.MainWindow = taWindow;
+                this.Close();
+                taWindow.Show();
 
-                    if (result.isAdmin == true)
-                    {
-                        AdminWindow adminWin = new AdminWindow();
-                        adminWin.Show();
-                    }
+                if (result.isAdmin == true)
+                {
+                    AdminWindow adminWin = new AdminWindow();
+                    adminWin.Show();
                 }
+            
             }
         }
 

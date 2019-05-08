@@ -25,11 +25,12 @@ namespace TravelAgency
 
         void initializeOffersFromDB()
         {
-            TravelAgencyDBEntities db = new TravelAgencyDBEntities();
-            foreach (Offer offer in db.Offer)
+            using (TravelAgencyDBEntities db = new TravelAgencyDBEntities())
             {
-                Offers.Add(offer);
+                Offers = new ObservableCollection<Offer>(db.Offer.ToList());
             }
+            offersDataGrid.ItemsSource = Offers;
+            //offersDataGrid.DataContext = Offers;
         }
 
 
@@ -39,7 +40,13 @@ namespace TravelAgency
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             initializeOffersFromDB();
-            offerListBox.ItemsSource = Offers;
+        }
+
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Login loginWin = new Login();
+            loginWin.Show();
+            this.Close();
         }
     }
 }

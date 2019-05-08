@@ -87,6 +87,7 @@ namespace TravelAgency
             }
             clearInputBoxes();
             initializeUsersFromDB();
+            usersListBox.ItemsSource = Users;
         }
     }
 }

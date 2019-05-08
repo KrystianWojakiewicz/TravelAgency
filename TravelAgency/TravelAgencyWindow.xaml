@@ -5,23 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency"
         mc:Ignorable="d"
-        Title="Super Exclusive Travel Agency" Height="450" Width="800">
+        Title="Super Exclusive Travel Agency" Height="571.6" Width="792" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}">
 
-    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Margin="2,0,2,4">
         <Grid.RowDefinitions>
-            <RowDefinition Height="36*"/>
-            <RowDefinition Height="47*"/>
-            <RowDefinition Height="337*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="201*"/>
+            <RowDefinition Height="227*"/>
+            <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="170*"/>
-            <ColumnDefinition Width="227*"/>
+            <ColumnDefinition Width="341*"/>
+            <ColumnDefinition Width="337*"/>
+            <ColumnDefinition Width="104*"/>
         </Grid.ColumnDefinitions>
-        <Canvas HorizontalAlignment="Left" Height="36.034" VerticalAlignment="Top" Width="793.6" Grid.ColumnSpan="5" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
-            <Button Content="Logout" Canvas.Left="694.6" Canvas.Top="6.074" Width="75" Background="#FFB5B6CB"/>
+        <Canvas Height="36" Grid.ColumnSpan="3" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" VerticalAlignment="Top">
+            <Button x:Name="logoutBtn" Content="Logout" Canvas.Left="694.6" Canvas.Top="6.074" Width="75" Background="#FFB5B6CB" Click="LogoutBtn_Click"/>
             <Button Content="Shopping Cart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84.6" Background="#FFB5B6CB" Height="19.96" Canvas.Left="582.6" Canvas.Top="6.074"/>
         </Canvas>
-        <ListBox x:Name="offerListBox" HorizontalAlignment="Left" Height="317.321" Margin="10,10,0,0" VerticalAlignment="Top" Width="319.829" Grid.Row="2"/>
-        <TextBox HorizontalAlignment="Left" Height="21.858" IsReadOnly="True" TextWrapping="Wrap" Text="Offers" VerticalAlignment="Top" Width="85.6" Margin="10,21.2,0,0" Grid.Row="1" Background="#FFB5B6CB"/>
+        <TextBox HorizontalAlignment="Left" Height="22" IsReadOnly="True" TextWrapping="Wrap" Text="Offers" VerticalAlignment="Top" Width="86" Margin="10,21.4,0,0" Grid.Row="1" Background="#FFB5B6CB"/>
+        <Image x:Name="offerImage" Grid.Column="1" HorizontalAlignment="Left" Height="181" Margin="9.6,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="317.227"/>
+        <Canvas Grid.Column="1" Margin="9.6,10,10,0" Grid.Row="3">
+            <TextBox Height="195.069" TextWrapping="Wrap" Canvas.Top="9.665" Width="297.228" Panel.ZIndex="1" BorderBrush="Black" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" Canvas.Left="10"/>
+        </Canvas>
+        <DataGrid x:Name="offersDataGrid" HorizontalAlignment="Left" Height="408" Margin="10,10,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Width="320.826" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True">
+            <DataGrid.ItemBindingGroup>
+                <BindingGroup/>
+            </DataGrid.ItemBindingGroup>
+            <DataGrid.Columns>
+                <DataGridComboBoxColumn x:Name="Title" Header="Title" IsReadOnly="True" Width="100" CanUserReorder="False"/>
+                <DataGridComboBoxColumn x:Name="Destination" Header="Destination" IsReadOnly="True" Width="100" CanUserReorder="False"/>
+                <DataGridComboBoxColumn x:Name="Date" Header="Date" IsReadOnly="True" Width="117" CanUserReorder="False"/>
+            </DataGrid.Columns>
+            <DataGrid.DataContext>
+                <local:Offer/>
+            </DataGrid.DataContext>
+        </DataGrid>
     </Grid>
 </Window>
