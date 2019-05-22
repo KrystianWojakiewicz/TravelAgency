@@ -16,25 +16,28 @@
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="171*"/>
-            <ColumnDefinition Width="131*"/>
-            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="385*"/>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="152*"/>
+            <ColumnDefinition Width="128*"/>
         </Grid.ColumnDefinitions>
-        <Canvas Height="36" Grid.ColumnSpan="3" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" VerticalAlignment="Top" Margin="0,0,-0.4,0">
+        <Canvas Height="36" Grid.ColumnSpan="4" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" VerticalAlignment="Top" Margin="0,0,-0.4,0">
             <Button x:Name="logoutBtn" Content="Logout" Canvas.Left="694.6" Canvas.Top="6.074" Width="75" Background="#FFB5B6CB" Click="LogoutBtn_Click"/>
-            <Button Content="Shopping Cart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84.6" Background="#FFB5B6CB" Height="19.96" Canvas.Left="582.6" Canvas.Top="6.074"/>
+            <Button x:Name="shoppingCartBtn" Content="Shopping Cart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84.6" Background="#FFB5B6CB" Height="19.96" Canvas.Left="582.6" Canvas.Top="6.074" Click="shoppingCartBtn_Click"/>
         </Canvas>
         <TextBox HorizontalAlignment="Left" Height="22" IsReadOnly="True" TextWrapping="Wrap" Text="Offers" VerticalAlignment="Top" Width="86" Margin="10,21.4,0,0" Grid.Row="1" Background="#FFB5B6CB"/>
-        <Image x:Name="offerImage" Grid.Column="1" HorizontalAlignment="Right" Height="181" Margin="0,10.6,10,0" Grid.Row="2" VerticalAlignment="Top" Width="241"/>
-        <DataGrid x:Name="offersDataGrid" HorizontalAlignment="Left" Height="408" Margin="10,9.6,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Width="321" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" MaxColumnWidth="160" AutoGenerateColumns="False" BorderThickness="3" SelectionChanged="OffersDataGrid_SelectionChanged" IsReadOnly="True">
+        <Image x:Name="offerImage" HorizontalAlignment="Right" Height="181" Margin="0,10.6,10,0" Grid.Row="2" VerticalAlignment="Top" Width="241" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="offersDataGrid" HorizontalAlignment="Left" Height="408" Margin="10,9.6,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Width="364.803" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" MaxColumnWidth="160" AutoGenerateColumns="False" BorderThickness="3" SelectionChanged="OffersDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
                 <DataGridTextColumn Header="Destination" Binding="{Binding Destination}"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
-                <DataGridTextColumn Header="Image" Binding="{Binding Image}"/>
+                <DataGridTextColumn Header="Price [$]" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="weatherInfoTextBox" TextWrapping="Wrap" Panel.ZIndex="1" BorderBrush="Black" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" BorderThickness="2" Margin="0,13.6,2.6,82.2" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Width="171"/>
+        <TextBox x:Name="weatherInfoTextBox" TextWrapping="Wrap" Panel.ZIndex="1" BorderBrush="Black" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" BorderThickness="2" Margin="0,9.6,10,86.2" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Width="275.2" Grid.ColumnSpan="3"/>
+        <Button Content="Add to Cart" Grid.Column="2" HorizontalAlignment="Left" Margin="11,10,11,0" Grid.Row="3" VerticalAlignment="Top" Width="127.796" Height="36.76" Background="#FFCD4E4E" Click="addToCart_Click"/>
     </Grid>
 </Window>

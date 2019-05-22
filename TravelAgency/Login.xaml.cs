@@ -26,7 +26,7 @@ namespace TravelAgency
         }
 
         //check if there exists a user with given username/password
-        private void queryUser(TravelAgencyDBEntities db)
+        private bool queryUser(TravelAgencyDBEntities db)
         {
             var user = db.User
               .Where(u => u.Username == usernameTextBox.Text)
@@ -37,12 +37,13 @@ namespace TravelAgency
             if (result == null)
             {
                 MessageBox.Show("Invalid Username or Password");
+                return false;
             }
             else
             {
                 MessageBox.Show("Login Successful", "alert", MessageBoxButton.OK);
                 
-                TravelAgencyWindow taWindow = new TravelAgencyWindow();
+                TravelAgencyWindow taWindow = new TravelAgencyWindow(result);
                 App.Current.MainWindow = taWindow;
                 this.Close();
                 taWindow.Show();
@@ -52,7 +53,7 @@ namespace TravelAgency
                     AdminWindow adminWin = new AdminWindow();
                     adminWin.Show();
                 }
-            
+                return true;            
             }
         }
 

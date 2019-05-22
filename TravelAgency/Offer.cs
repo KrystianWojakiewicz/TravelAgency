@@ -21,5 +21,7 @@ namespace TravelAgency
         public string Description { get; set; }
         public byte[] Image { get; set; }
         public string Coordinates { get; set; }
+        public Nullable<int> Price { get; set; }
+        public Nullable<int> Quantity { get; set; }
     }
 }

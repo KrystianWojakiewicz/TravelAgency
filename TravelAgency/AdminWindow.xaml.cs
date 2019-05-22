@@ -21,6 +21,7 @@ namespace TravelAgency
     public partial class AdminWindow : Window
     {
         ObservableCollection<User> Users { get; set; }
+ 
         
         void initializeUsersFromDB()
         {
@@ -61,6 +62,25 @@ namespace TravelAgency
             MessageBox.Show("User has been successfully registered");
         }
 
+        private void editUser(TravelAgencyDBEntities db)
+        {
+            if (!String.IsNullOrEmpty(usernameTextBox.Text) && !String.IsNullOrEmpty(passwordTextBox.Text))
+            {
+                int userIndex = usersListBox.SelectedIndex;
+                Users[userIndex].Username = usernameTextBox.Text;
+                Users[userIndex].Password = passwordTextBox.Text;
+
+                db.Entry(Users[userIndex]).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("Please enter profile credentials");
+            }
+
+            MessageBox.Show("User has been successfully edited");
+        }
+
         private void DeleteUserBtn_Click(object sender, RoutedEventArgs e)
         {
             using(TravelAgencyDBEntities db = new TravelAgencyDBEntities())
@@ -84,6 +104,27 @@ namespace TravelAgency
             using (TravelAgencyDBEntities db = new TravelAgencyDBEntities())
             {
                 addNewUser(db);
+            }
+            clearInputBoxes();
+            initializeUsersFromDB();
+        }
+
+        private void UsersListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (usersListBox.SelectedIndex == -1) { return; }
+
+            int userIndex = usersListBox.SelectedIndex;
+            usernameTextBox.Text = Users[userIndex].Username;
+            passwordTextBox.Text = Users[userIndex].Password;
+        }
+
+        private void EditUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+           // if(usersListBox.SelectedIndex == -1) { return; }
+
+            using (TravelAgencyDBEntities db = new TravelAgencyDBEntities())
+            {
+                editUser(db);
             }
             clearInputBoxes();
             initializeUsersFromDB();

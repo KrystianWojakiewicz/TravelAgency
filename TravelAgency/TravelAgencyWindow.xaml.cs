@@ -27,6 +27,8 @@ namespace TravelAgency
     public partial class TravelAgencyWindow : Window
     {
         ObservableCollection<Offer> Offers { get; set; }
+        List<Offer> shoppingList { get; set; } = new List<Offer>();
+        User myUser;
 
         void initializeOffersFromDB()
         {
@@ -38,11 +40,12 @@ namespace TravelAgency
         }
 
 
-        public TravelAgencyWindow()
+        public TravelAgencyWindow(User user)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
+            myUser = user;
             initializeOffersFromDB();
         }
 
@@ -55,6 +58,7 @@ namespace TravelAgency
 
         private void OffersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(offersDataGrid.SelectedIndex == -1) { return; }
             fetchWeatherData();
         }
 
@@ -65,18 +69,31 @@ namespace TravelAgency
             string LAT_LONG = Offers[offersDataGrid.SelectedIndex].Coordinates;
 
             string responseText;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.darksky.net/forecast/" + MY_API_KEY + LAT_LONG + "?units=si");
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                using (StreamReader responseStream = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")))
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.darksky.net/forecast/" + MY_API_KEY + LAT_LONG + "?units=si");
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    responseText = responseStream.ReadToEnd();
+                    using (StreamReader responseStream = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")))
+                    {
+                        responseText = responseStream.ReadToEnd();
+                    }
+                }
+
+                try
+                {
+                    var data = (JObject)JsonConvert.DeserializeObject(responseText);
+                    updateWeatherTextBox(data);
+                }
+                catch(JsonException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            var data = (JObject)JsonConvert.DeserializeObject(responseText);
-
-            updateWeatherTextBox(data);
+            catch(WebException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }  
         }
 
         private void updateWeatherTextBox(JObject data)
@@ -94,6 +111,34 @@ namespace TravelAgency
 
             string summary = data["currently"]["summary"].Value<string>();
             weatherInfoTextBox.Text += "Summary: " + summary + "\n";
+        }
+
+        private void addToCart_Click(object sender, RoutedEventArgs e)
+        {
+            int offerIndex = offersDataGrid.SelectedIndex;
+            using (TravelAgencyDBEntities db = new TravelAgencyDBEntities())
+            {
+                if (Offers[offerIndex].Quantity <= 0)
+                {
+                    MessageBox.Show("No offers left");
+                }
+                else
+                {
+                    Offers[offerIndex].Quantity = Offers[offerIndex].Quantity - 1;
+
+                    db.Entry(Offers[offerIndex]).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    initializeOffersFromDB();
+                    shoppingList.Add(Offers[offerIndex]);
+                }
+            }
+        }
+
+        private void shoppingCartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SCartWindow shopCartWindow = new SCartWindow(shoppingList, myUser);
+            shopCartWindow.Show();
+            this.Hide();
         }
     }
 }
